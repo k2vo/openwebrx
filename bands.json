@@ -219,7 +219,7 @@
   {
     "name": "2m",
     "lower_bound": 144000000,
-    "upper_bound": 146000000,
+    "upper_bound": 148000000,
     "frequencies": {
       "wspr": 144489000,
       "ft8": 144174000,
