@@ -1,4 +1,9 @@
+from owrx.config.core import CoreConfig
+
 import threading
+import os.path
+import os
+import re
 
 import logging
 
@@ -21,6 +26,40 @@ class CpuUsageThread(threading.Thread):
         self.doRun = True
         self.last_worktime = 0
         self.last_idletime = 0
+
+        # Determine where to read CPU temperature from
+        tempFile = CoreConfig().get_temperature_sensor()
+        if tempFile is not None and os.path.isfile(tempFile):
+            self.tempFile = tempFile
+        else:
+            self.tempFile = None
+
+        # Check sensors in /sys/class/thermal
+        if self.tempFile is None:
+            tempRoot = "/sys/class/thermal"
+            try:
+                for file in os.listdir(tempRoot):
+                    if re.match(r"thermal_zone\d+", file):
+                        tempFile = tempRoot + "/" + file + "/temp"
+                        if os.path.isfile(tempFile):
+                            self.tempFile = tempFile
+                            break
+            except Exception:
+                pass
+
+        # Check monitors in /sys/class/hwmon
+        if self.tempFile is None:
+            tempRoot = "/sys/class/hwmon"
+            try:
+                for file in os.listdir(tempRoot):
+                    if re.match(r"hwmon\d+", file):
+                        tempFile = tempRoot + "/" + file + "/device/temp"
+                        if os.path.isfile(tempFile):
+                            self.tempFile = tempFile
+                            break
+            except Exception:
+                pass
+
         self.endEvent = threading.Event()
         self.startLock = threading.Lock()
         super().__init__()
@@ -41,12 +80,17 @@ class CpuUsageThread(threading.Thread):
         logger.debug("cpu usage thread shut down")
 
     def get_temperature(self):
+        # Must have temperature file
+        if self.tempFile is None:
+            return 0
+        # Try opening and reading file
         try:
-            f = open("/sys/class/hwmon/hwmon0/device/temp", "r")
+            f = open(self.tempFile, "r")
         except:
-            return 0  # Workaround, possibly we're on a Mac
+            return 0
         line = f.readline()
         f.close()
+        # Try parsing read temperature
         try:
             return int(line) // 1000
         except:
