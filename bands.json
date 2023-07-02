@@ -191,8 +191,8 @@
   },
   {
     "name": "6m",
-    "lower_bound": 50030000,
-    "upper_bound": 51000000,
+    "lower_bound": 50000000,
+    "upper_bound": 54000000,
     "frequencies": {
       "bpsk31": 50305000,
       "ft8": 50313000,
