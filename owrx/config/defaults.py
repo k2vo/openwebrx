@@ -4,12 +4,12 @@ from owrx.property import PropertyLayer
 defaultConfig = PropertyLayer(
     version=7,
     max_clients=20,
-    receiver_name="[Callsign]",
-    receiver_location="Budapest, Hungary",
+    receiver_name="W6NWG",
+    receiver_location="Palomar Mountain, California",
     receiver_asl=200,
-    receiver_admin="example@example.com",
+    receiver_admin="services.palomararc.org",
     receiver_gps=PropertyLayer(lat=47.0, lon=19.0),
-    photo_title="Panorama of Budapest from Schönherz Zoltán Dormitory",
+    photo_title="Panorama of PARC Repeater Site",
     photo_desc="",
     fft_fps=9,
     fft_size=4096,
@@ -22,7 +22,7 @@ defaultConfig = PropertyLayer(
     digital_voice_nxdn_id_lookup=True,
     sdrs=PropertyLayer(
         rtlsdr=PropertyLayer(
-            name="RTL-SDR USB Stick",
+            name="RTL-SDR v3",
             type="rtl_sdr",
             profiles=PropertyLayer(
                 **{
@@ -48,7 +48,7 @@ defaultConfig = PropertyLayer(
             ),
         ),
         airspy=PropertyLayer(
-            name="Airspy HF+",
+            name="Airspy HF+ Discovery",
             type="airspyhf",
             rf_gain="auto",
             profiles=PropertyLayer(
@@ -97,9 +97,8 @@ defaultConfig = PropertyLayer(
             ),
         ),
         sdrplay=PropertyLayer(
-            name="SDRPlay RSP2",
+            name="SDRPlay RSP1A",
             type="sdrplay",
-            antenna="Antenna A",
             profiles=PropertyLayer(
                 **{
                     "20m": PropertyLayer(
