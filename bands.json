@@ -21,7 +21,7 @@
   },
   {
     "name": "160m",
-    "lower_bound": 1810000,
+    "lower_bound": 1800000,
     "upper_bound": 2000000,
     "frequencies": {
       "bpsk31": 1838000,
@@ -39,7 +39,7 @@
   {
     "name": "80m",
     "lower_bound": 3500000,
-    "upper_bound": 3900000,
+    "upper_bound": 4000000,
     "frequencies": {
       "bpsk31": 3580000,
       "ft8": 3573000,
@@ -68,7 +68,7 @@
   {
     "name": "40m",
     "lower_bound": 7000000,
-    "upper_bound": 7200000,
+    "upper_bound": 7300000,
     "frequencies": {
       "bpsk31": 7040000,
       "ft8": 7074000,
@@ -86,7 +86,7 @@
   },
   {
     "name": "30m",
-    "lower_bound": 10099000,
+    "lower_bound": 10100000,
     "upper_bound": 10150000,
     "frequencies": {
       "bpsk31": 10141000,
@@ -232,6 +232,14 @@
     "tags": ["hamradio"]
   },
   {
+    "name": "1.25m",
+    "lower_bound": 219000000,
+    "upper_bound": 225000000,
+    "frequencies": {
+    },
+    "tags": ["hamradio"]
+  },
+  {
     "name": "70cm",
     "lower_bound": 420000000,
     "upper_bound": 450000000,
@@ -240,6 +248,14 @@
       "q65": 432065000,
       "msk144": 432360000,
       "ism": 433920000
+    },
+    "tags": ["hamradio"]
+  },
+  {
+    "name": "33cm",
+    "lower_bound": 902000000,
+    "upper_bound": 928000000,
+    "frequencies": {
     },
     "tags": ["hamradio"]
   },
